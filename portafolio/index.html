@@ -21,53 +21,80 @@
     <a href="#contacto">Contacto</a>
   </nav>
 
-  <section id="sobre-mi">
-    <h2>Sobre mí</h2>
-    <p>Soy estudiante en el colegio EPET 12, en la orientación a programación.</p>
-  </section>
+  <main>
+    <section id="sobre-mi">
+      <h2>Sobre mí</h2>
+      <p>Soy estudiante en el colegio EPET 12, en la orientación a programación.</p>
+    </section>
 
-  <section id="educacion">
-    <h2>Educación</h2>
-    <ul>
-      <h3>Trabajé con:</h3>
-      <li>Python</li>
-      <li>HTML</li>
-      <li>CSS</li>
-      <li>JavaScript</li>
-      <li>JAVA</li>
-    </ul>
-  </section>
-
-  <section id="proyectos">
-    <h2>Proyectos</h2>
-
-    <div class="proyecto-card">
-      <h3>Pomodoro</h3>
-      <p>Una app usando React Native para gestionar tiempos de trabajo y descanso.</p>
-      <div class="botones">
-        <a href="#" class="btn" onclick="abrirModal()">Ver demo</a>
-        <a href="https://github.com/matimontecino/pomodoro" target="_blank" class="btn">Ver fuente</a>
+    <section id="educacion">
+      <h2>Educación</h2>
+      <div class="educacion-contenido">
+        <h3>Trabajé con:</h3>
+        <ul>
+          <li>Python</li>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>JAVA</li>
+        </ul>
       </div>
-    </div>
+    </section>
 
-    
-  </section>
+    <section id="proyectos">
+      <h2>Proyectos</h2>
 
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p>GitHub: <a href="https://github.com/matimontecino" target="_blank">github.com/matimontecino</a></p>
-  </section>
+      <!-- Proyecto Pomodoro -->
+      <div class="proyecto-card">
+        <h3>Pomodoro</h3>
+        <p>Una app usando React Native para gestionar tiempos de trabajo y descanso.</p>
+        <div class="botones">
+          <a href="#" class="btn" onclick="abrirModal('modal-pomodoro')">Ver demo</a>
+          <a href="https://github.com/matimontecino/pomodoro" target="_blank" class="btn">Ver fuente</a>
+        </div>
+      </div>
 
-  <!-- Modal para demo Pomodoro -->
-  <div id="modal-demo" class="modal">
+      <!-- Proyecto APOD -->
+      <div class="proyecto-card">
+        <h3>APOD</h3>
+        <p>Una app usando React Native que muestra la imagen astronómica del día gracias a la API de la NASA.</p>
+        <div class="botones">
+          <a href="#" class="btn" onclick="abrirModal('modal-apod')">Ver demo</a>
+          <a href="https://github.com/matimontecino/apod" target="_blank" class="btn">Ver fuente</a>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p>GitHub: <a href="https://github.com/matimontecino" target="_blank">github.com/matimontecino</a></p>
+    </section>
+  </main>
+
+  <!-- Modal para Pomodoro -->
+  <div id="modal-pomodoro" class="modal">
     <div class="modal-contenido">
-      <h3>📱 Instrucciones para probar la demo</h3>
+      <h3>📱 Instrucciones para probar la demo Pomodoro</h3>
       <p>Instalá <strong>Expo Go</strong> en tu celular:</p>
-      <p>Para android <a href="https://play.google.com/store/apps/details?id=host.exp.exponent" target="_blank">aquí</a></p>
-      <p>Para iOS <a href="https://apps.apple.com/us/app/expo-go/id982107779" target="_blank">aquí</a></p>
+      <p>Para Android: <a href="https://play.google.com/store/apps/details?id=host.exp.exponent" target="_blank">aquí</a></p>
+      <p>Para iOS: <a href="https://apps.apple.com/us/app/expo-go/id982107779" target="_blank">aquí</a></p>
       <p>📷 Escaneá este QR:</p>
-      <img src="./images/qr/Captura de pantalla 2025-05-01 171937.png" alt="QR demo" class="qr-img">
-      <button onclick="cerrarModal()">Cerrar</button>
+      <img src="./images/qr/Captura de pantalla 2025-05-01 171937.png" alt="QR demo Pomodoro" class="qr-img">
+      <button onclick="cerrarModal('modal-pomodoro')">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Modal para APOD -->
+  <div id="modal-apod" class="modal">
+    <div class="modal-contenido">
+      <h3>📱 Instrucciones para probar la demo APOD</h3>
+      <p>Instalá <strong>Expo Go</strong> en tu celular:</p>
+      <p>Para Android: <a href="https://play.google.com/store/apps/details?id=host.exp.exponent" target="_blank">aquí</a></p>
+      <p>Para iOS: <a href="https://apps.apple.com/us/app/expo-go/id982107779" target="_blank">aquí</a></p>
+      <p>📷 Escaneá este QR:</p>
+      <img src="./images/QR APOD.png" alt="QR demo APOD" class="qr-img">
+      <button onclick="cerrarModal('modal-apod')">Cerrar</button>
     </div>
   </div>
 
@@ -76,19 +103,21 @@
   </footer>
 
   <script>
-    function abrirModal() {
-      document.getElementById("modal-demo").style.display = "flex";
+    function abrirModal(id) {
+      document.getElementById(id).style.display = "flex";
     }
 
-    function cerrarModal() {
-      document.getElementById("modal-demo").style.display = "none";
+    function cerrarModal(id) {
+      document.getElementById(id).style.display = "none";
     }
 
     window.onclick = function(event) {
-      const modal = document.getElementById("modal-demo");
-      if (event.target === modal) {
-        cerrarModal();
-      }
+      const modales = document.querySelectorAll('.modal');
+      modales.forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
     }
   </script>
 
